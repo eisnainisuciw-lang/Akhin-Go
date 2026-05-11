@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS AKHIN.GO - Materi Pembelajaran</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style Tambahan Khusus LMS */
+        .lms-container {
+            display: flex;
+            min-height: calc(100vh - 70px);
+            background-color: #fff;
+        }
+
+        .sidebar {
+            width: 320px;
+            background: var(--bg-light);
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 70px);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .bab-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bab-title {
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .sub-menu {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 10px;
+        }
+
+        .sub-menu li a {
+            display: block;
+            padding: 8px 15px;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .sub-menu li a:hover, .sub-menu li a.active {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding-left: 20px;
+        }
+
+        .content-section {
+            display: none; /* Sembunyikan semua section secara default */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block; /* Tampilkan section yang aktif */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .game-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .game-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .highlight-box {
+            background: var(--text-light-blue);
+            padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .lms-container { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">AKHIN.GO LMS</div>
+            <a href="index.html" class="btn" style="padding: 5px 15px; font-size: 0.8rem;">&larr; Beranda</a>
+        </div>
+    </nav>
+
+    <div class="lms-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <h3>Materi Kursus</h3>
+            <ul class="bab-menu">
+                <li>
+                    <span class="bab-title">BAB I: Adab di Rumah</span>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="showContent('bab1-intro')" class="active">Pendahuluan</a></li>
+                        <li><a href="#" onclick="showContent('bab1-orangtua')">Adab Orang Tua</a></li>
+                        <li><a href="#" onclick="showContent('bab1-saudara')">Adab Saudara</a></li>
+                        <li><a href="#" onclick="showContent('bab1-game')">🎮 Game Adab Rumah</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="bab-title">BAB II: Adab di Sekolah</span>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="showContent('bab2-intro')">Pendahuluan</a></li>
+                        <li><a href="#" onclick="showContent('bab2-guru')">Menghormati Guru</a></li>
+                        <li><a href="#" onclick="showContent('bab2-teman')">Menyayangi Teman</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="bab-title">BAB III: Adab Lingkungan</span>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="showContent('bab3-intro')">Pendahuluan</a></li>
+                        <li><a href="#" onclick="showContent('bab3-kebersihan')">Menjaga Kebersihan</a></li>
+                        <li><a href="#" onclick="showContent('bab3-makhluk')">Sayang Makhluk Hidup</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            
+            <!-- BAB 1: PENDAHULUAN -->
+            <section id="bab1-intro" class="content-section active">
+                <h1>BAB I: Adab di Rumah</h1>
+                <img src="https://i.ibb.co.com/VYz8pNzp/Gemini-Generated-Image-63eyvz63eyvz63ey.png" alt="Anak Muslim" class="img-responsive" style="max-height: 300px; width: auto; margin-bottom: 20px;">
+                <h3>Pendahuluan</h3>
+                <p>Rumah adalah tempat pertama kita belajar kasih sayang. Sebagai seorang Muslim, perilaku kita di rumah mencerminkan kualitas iman kita. Rasulullah SAW bersabda bahwa sebaik-baik kalian adalah yang paling baik akhlaknya terhadap keluarganya.</p>
+                <div class="highlight-box">
+                    <p><strong>QS. Al-Baqarah: 222:</strong> "Sesungguhnya Allah menyukai orang-orang yang bertaubat dan menyucikan diri."</p>
+                </div>
+            </section>
+
+            <!-- BAB 1: ORANG TUA -->
+            <section id="bab1-orangtua" class="content-section">
+                <h1>Birrul Walidain</h1>
+                <p>Berbakti kepada kedua orang tua adalah kunci utama meraih ridha Allah. Allah menempatkan perintah ini tepat setelah perintah menyembah-Nya.</p>
+                <h3>Lisan yang Santun</h3>
+                <ul>
+                    <li>Menjawab dengan suara rendah saat dipanggil.</li>
+                    <li>Gunakan 3 kata ajaib: <strong>Tolong, Maaf, Terima Kasih.</strong></li>
+                    <li>Mendengarkan tanpa memotong pembicaraan.</li>
+                </ul>
+                <h3>Ringan Tangan</h3>
+                <p>Contoh nyata: Merapikan tempat tidur, membawa piring kotor ke dapur, dan membantu menyapu.</p>
+            </section>
+
+            <!-- BAB 1: SAUDARA -->
+            <section id="bab1-saudara" class="content-section">
+                <h1>Siapa Itu Saudara?</h1>
+                <p>Saudara adalah teman terdekat di rumah. Hidup rukun dengan saudara membuat orang tua bangga.</p>
+                <h3>Adab Terhadap Saudara</h3>
+                <ul>
+                    <li><strong>Menyayangi Adik:</strong> Berikan contoh dan kasih sayang.</li>
+                    <li><strong>Menghormati Kakak:</strong> Gunakan panggilan sopan (Mas, Mbak, Kakak).</li>
+                    <li><strong>Berbagi:</strong> Ikhlas meminjamkan barang atau berbagi makanan.</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Tips:</strong> Jika salah, mintalah maaf dengan berani. Jika saudara minta maaf, maafkanlah dengan lapang dada.</p>
+                </div>
+            </section>
+
+            <!-- BAB 1: GAME -->
+            <section id="bab1-game" class="content-section">
+                <h1>🎮 Game Edukasi: Adab di Rumah</h1>
+                <p>Uji pemahamanmu tentang adab di rumah melalui tantangan interaktif di bawah ini!</p>
+                <div class="game-container">
+                    <!-- Embed link game yang diminta -->
+                    <iframe src="https://gemini.google.com/share/24932eb6befc" title="Game Akhin Go"></iframe>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.8rem; color: #777;">*Jika game tidak muncul, pastikan koneksi internet stabil.</p>
+            </section>
+
+            <!-- BAB 2: INTRO -->
+            <section id="bab2-intro" class="content-section">
+                <h1>BAB II: Adab di Sekolah</h1>
+                <p>Sekolah adalah tempat menuntut ilmu. Guru adalah pengganti orang tua, dan teman adalah saudara kita. Mari jaga adab agar ilmu berkah.</p>
+            </section>
+
+            <!-- BAB 2: GURU -->
+            <section id="bab2-guru" class="content-section">
+                <h1>Menghormati Guru</h1>
+                <p>Guru adalah pahlawan tanpa tanda jasa. Menghormati mereka adalah kunci sukses belajar.</p>
+                <ul>
+                    <li><strong>Ucapkan Salam:</strong> "Assalamu'alaikum" saat berpapasan.</li>
+                    <li><strong>Fokus:</strong> Simak penjelasan di kelas tanpa mengobrol.</li>
+                    <li><strong>Izin:</strong> Angkat tangan kanan jika ingin bertanya atau ke toilet.</li>
+                </ul>
+            </section>
+
+            <!-- BAB 3: LINGKUNGAN -->
+            <section id="bab3-kebersihan" class="content-section">
+                <h1>Adab Lingkungan</h1>
+                <p>Kebersihan sebagian dari iman. Sebagai khalifah, kita wajib menjaga bumi.</p>
+                <div class="highlight-box">
+                    <strong>Aksi Nyata:</strong>
+                    <ol>
+                        <li>Pegang sampah sampai ketemu tempat sampah.</li>
+                        <li>Pungut sampah di jalan (ini adalah sedekah!).</li>
+                        <li>Hemat listrik dan air.</li>
+                    </ol>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // Fungsi sederhana untuk pindah konten (LMS Logic)
+        function showContent(sectionId) {
+            // Sembunyikan semua section
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Tampilkan yang dipilih
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Update status 'active' pada menu sidebar
+            const links = document.querySelectorAll('.sub-menu li a');
+            links.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll ke atas otomatis saat ganti materi
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
