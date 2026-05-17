@@ -1,277 +1,418 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS AKHIN.GO - Materi Pembelajaran</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Style Tambahan Khusus LMS */
-        .lms-container {
-            display: flex;
-            min-height: calc(100vh - 70px);
-            background-color: #fff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MATERI PEMBELAJARAN | AKHIN.GO</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Tambah sedikit khusus untuk belajar.html */
+    .learning-layout {
+      display: flex;
+      gap: 2rem;
+      min-height: 100vh;
+    }
 
-        .sidebar {
-            width: 320px;
-            background: var(--bg-light);
-            border-right: 1px solid #ddd;
-            padding: 20px;
-            overflow-y: auto;
-            position: sticky;
-            top: 70px;
-            height: calc(100vh - 70px);
-        }
+    .sidebar {
+      width: 280px;
+      background-color: var(--bg-card);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: var(--box-shadow);
+    }
 
-        .main-content {
-            flex: 1;
-            padding: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    .sidebar h3 {
+      margin-bottom: 0.8rem;
+      color: var(--primary-color);
+    }
 
-        .bab-menu {
-            list-style: none;
-            padding: 0;
-        }
+    .sidebar ul {
+      list-style: none;
+    }
 
-        .bab-title {
-            font-weight: bold;
-            display: block;
-            padding: 10px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 5px;
-            margin-top: 15px;
-            cursor: pointer;
-        }
+    .sidebar li {
+      margin-bottom: 0.5rem;
+    }
 
-        .sub-menu {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 10px;
-        }
+    .sidebar a {
+      color: var(--text-main);
+      text-decoration: none;
+      display: block;
+      padding: 0.5rem 0.8rem;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
 
-        .sub-menu li a {
-            display: block;
-            padding: 8px 15px;
-            color: var(--text-dark);
-            text-decoration: none;
-            border-bottom: 1px solid #eee;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
+    .sidebar a:hover {
+      background-color: var(--primary-color);
+      color: var(--text-main);
+    }
 
-        .sub-menu li a:hover, .sub-menu li a.active {
-            background: var(--secondary-color);
-            color: var(--primary-color);
-            padding-left: 20px;
-        }
+    .content-main {
+      flex: 1;
+      background-color: var(--bg-card);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: var(--box-shadow);
+    }
 
-        .content-section {
-            display: none; /* Sembunyikan semua section secara default */
-            animation: fadeIn 0.5s ease;
-        }
+    .section-module {
+      margin-bottom: 2rem;
+    }
 
-        .content-section.active {
-            display: block; /* Tampilkan section yang aktif */
-        }
+    .section-module h4 {
+      margin-bottom: 0.8rem;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .section-module img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
 
-        .game-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Ratio 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 10px;
-            background: #000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+    .section-module iframe,
+    .canva-embed,
+    .game-link,
+    .video-link,
+    .quiz-link {
+      margin: 0.8rem 0;
+    }
 
-        .game-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+    .canva-embed {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-top: 56.25%;
+      box-shadow: 0 2px 8px rgba(63,69,81,0.16);
+      margin-top: 1.6em;
+      margin-bottom: 0.9em;
+      overflow: hidden;
+      border-radius: 8px;
+      will-change: transform;
+    }
 
-        .highlight-box {
-            background: var(--text-light-blue);
-            padding: 20px;
-            border-left: 5px solid var(--primary-color);
-            border-radius: 5px;
-            margin: 20px 0;
-        }
+    .canva-embed iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        @media (max-width: 768px) {
-            .lms-container { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
-        }
-    </style>
+    .game-link,
+    .video-link,
+    .quiz-link {
+      display: block;
+      margin: 0.5rem 0;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .game-link:hover,
+    .video-link:hover,
+    .quiz-link:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 768px) {
+      .learning-layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="logo">AKHIN.GO LMS</div>
-            <a href="index.html" class="btn" style="padding: 5px 15px; font-size: 0.8rem;">&larr; Beranda</a>
-        </div>
-    </nav>
-
-    <div class="lms-container">
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <h3>Materi Kursus</h3>
-            <ul class="bab-menu">
-                <li>
-                    <span class="bab-title">BAB I: Adab di Rumah</span>
-                    <ul class="sub-menu">
-                        <li><a href="#" onclick="showContent('bab1-intro')" class="active">Pendahuluan</a></li>
-                        <li><a href="#" onclick="showContent('bab1-orangtua')">Adab Orang Tua</a></li>
-                        <li><a href="#" onclick="showContent('bab1-saudara')">Adab Saudara</a></li>
-                        <li><a href="#" onclick="showContent('bab1-game')">🎮 Game Adab Rumah</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="bab-title">BAB II: Adab di Sekolah</span>
-                    <ul class="sub-menu">
-                        <li><a href="#" onclick="showContent('bab2-intro')">Pendahuluan</a></li>
-                        <li><a href="#" onclick="showContent('bab2-guru')">Menghormati Guru</a></li>
-                        <li><a href="#" onclick="showContent('bab2-teman')">Menyayangi Teman</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="bab-title">BAB III: Adab Lingkungan</span>
-                    <ul class="sub-menu">
-                        <li><a href="#" onclick="showContent('bab3-intro')">Pendahuluan</a></li>
-                        <li><a href="#" onclick="showContent('bab3-kebersihan')">Menjaga Kebersihan</a></li>
-                        <li><a href="#" onclick="showContent('bab3-makhluk')">Sayang Makhluk Hidup</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </aside>
-
-        <!-- MAIN CONTENT AREA -->
-        <main class="main-content">
-            
-            <!-- BAB 1: PENDAHULUAN -->
-            <section id="bab1-intro" class="content-section active">
-                <h1>BAB I: Adab di Rumah</h1>
-                <img src="https://i.ibb.co.com/VYz8pNzp/Gemini-Generated-Image-63eyvz63eyvz63ey.png" alt="Anak Muslim" class="img-responsive" style="max-height: 300px; width: auto; margin-bottom: 20px;">
-                <h3>Pendahuluan</h3>
-                <p>Rumah adalah tempat pertama kita belajar kasih sayang. Sebagai seorang Muslim, perilaku kita di rumah mencerminkan kualitas iman kita. Rasulullah SAW bersabda bahwa sebaik-baik kalian adalah yang paling baik akhlaknya terhadap keluarganya.</p>
-                <div class="highlight-box">
-                    <p><strong>QS. Al-Baqarah: 222:</strong> "Sesungguhnya Allah menyukai orang-orang yang bertaubat dan menyucikan diri."</p>
-                </div>
-            </section>
-
-            <!-- BAB 1: ORANG TUA -->
-            <section id="bab1-orangtua" class="content-section">
-                <h1>Birrul Walidain</h1>
-                <p>Berbakti kepada kedua orang tua adalah kunci utama meraih ridha Allah. Allah menempatkan perintah ini tepat setelah perintah menyembah-Nya.</p>
-                <h3>Lisan yang Santun</h3>
-                <ul>
-                    <li>Menjawab dengan suara rendah saat dipanggil.</li>
-                    <li>Gunakan 3 kata ajaib: <strong>Tolong, Maaf, Terima Kasih.</strong></li>
-                    <li>Mendengarkan tanpa memotong pembicaraan.</li>
-                </ul>
-                <h3>Ringan Tangan</h3>
-                <p>Contoh nyata: Merapikan tempat tidur, membawa piring kotor ke dapur, dan membantu menyapu.</p>
-            </section>
-
-            <!-- BAB 1: SAUDARA -->
-            <section id="bab1-saudara" class="content-section">
-                <h1>Siapa Itu Saudara?</h1>
-                <p>Saudara adalah teman terdekat di rumah. Hidup rukun dengan saudara membuat orang tua bangga.</p>
-                <h3>Adab Terhadap Saudara</h3>
-                <ul>
-                    <li><strong>Menyayangi Adik:</strong> Berikan contoh dan kasih sayang.</li>
-                    <li><strong>Menghormati Kakak:</strong> Gunakan panggilan sopan (Mas, Mbak, Kakak).</li>
-                    <li><strong>Berbagi:</strong> Ikhlas meminjamkan barang atau berbagi makanan.</li>
-                </ul>
-                <div class="highlight-box">
-                    <p><strong>Tips:</strong> Jika salah, mintalah maaf dengan berani. Jika saudara minta maaf, maafkanlah dengan lapang dada.</p>
-                </div>
-            </section>
-
-            <!-- BAB 1: GAME -->
-            <section id="bab1-game" class="content-section">
-                <h1>🎮 Game Edukasi: Adab di Rumah</h1>
-                <p>Uji pemahamanmu tentang adab di rumah melalui tantangan interaktif di bawah ini!</p>
-                <div class="game-container">
-                    <!-- Embed link game yang diminta -->
-                    <iframe src="https://gemini.google.com/share/24932eb6befc" title="Game Akhin Go"></iframe>
-                </div>
-                <p style="margin-top: 15px; font-size: 0.8rem; color: #777;">*Jika game tidak muncul, pastikan koneksi internet stabil.</p>
-            </section>
-
-            <!-- BAB 2: INTRO -->
-            <section id="bab2-intro" class="content-section">
-                <h1>BAB II: Adab di Sekolah</h1>
-                <p>Sekolah adalah tempat menuntut ilmu. Guru adalah pengganti orang tua, dan teman adalah saudara kita. Mari jaga adab agar ilmu berkah.</p>
-            </section>
-
-            <!-- BAB 2: GURU -->
-            <section id="bab2-guru" class="content-section">
-                <h1>Menghormati Guru</h1>
-                <p>Guru adalah pahlawan tanpa tanda jasa. Menghormati mereka adalah kunci sukses belajar.</p>
-                <ul>
-                    <li><strong>Ucapkan Salam:</strong> "Assalamu'alaikum" saat berpapasan.</li>
-                    <li><strong>Fokus:</strong> Simak penjelasan di kelas tanpa mengobrol.</li>
-                    <li><strong>Izin:</strong> Angkat tangan kanan jika ingin bertanya atau ke toilet.</li>
-                </ul>
-            </section>
-
-            <!-- BAB 3: LINGKUNGAN -->
-            <section id="bab3-kebersihan" class="content-section">
-                <h1>Adab Lingkungan</h1>
-                <p>Kebersihan sebagian dari iman. Sebagai khalifah, kita wajib menjaga bumi.</p>
-                <div class="highlight-box">
-                    <strong>Aksi Nyata:</strong>
-                    <ol>
-                        <li>Pegang sampah sampai ketemu tempat sampah.</li>
-                        <li>Pungut sampah di jalan (ini adalah sedekah!).</li>
-                        <li>Hemat listrik dan air.</li>
-                    </ol>
-                </div>
-            </section>
-
-        </main>
+  <!-- Header halaman pembelajaran -->
+  <header class="hero" style="padding: 2rem 0;">
+    <div class="container">
+      <h1>MATERI PEMBELAJARAN</h1>
+      <p>
+        Menjelajahi pembelajaran akhlak interaktif melalui modul, video, dan kuis untuk siswa SD.
+      </p>
     </div>
+  </header>
 
-    <script>
-        // Fungsi sederhana untuk pindah konten (LMS Logic)
-        function showContent(sectionId) {
-            // Sembunyikan semua section
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
+  <main class="learning-layout">
+    <!-- Sidebar / menu bab -->
+    <aside class="sidebar">
+      <h3>Daftar Bab</h3>
+      <ul>
+        <li><a href="#bab1">Bab 1: Adab di rumah</a></li>
+          <ul>
+            <li><a href="#1.1">1.1 Adab terhadap orang tua</a></li>
+            <li><a href="#1.2">1.2 Adab terhadap saudara</a></li>
+            <li><a href="#1.3">1.3 Quiz</a></li>
+            <li><a href="#1.4">1.4 Game</a></li>
+            <li><a href="#1.5">1.5 Video</a></li>
+          </ul>
+        <li><a href="#bab2">Bab 2: Adab di Sekolah</a></li>
+          <ul>
+            <li><a href="#2.1">2.1 Adab di sekolah</a></li>
+            <li><a href="#2.2">2.2 Game adab di sekolah</a></li>
+            <li><a href="#2.3">2.3 Quiz</a></li>
+            <li><a href="#2.4">2.4 Video</a></li>
+          </ul>
+        <li><a href="#bab3">Bab 3: Adab Lingkungan</a></li>
+          <ul>
+            <li><a href="#3.1">3.1 PPT adab lingkungan</a></li>
+            <li><a href="#3.2">3.2 PPT adab kepada hewan</a></li>
+            <li><a href="#3.3">3.3 Game</a></li>
+            <li><a href="#3.4">3.4 Video</a></li>
+            <li><a href="#3.5">3.5 Quiz</a></li>
+            <li><a href="#3.6">3.6 Evaluasi</a></li>
+          </ul>
+      </ul>
+    </aside>
 
-            // Tampilkan yang dipilih
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
+    <!-- Konten utama materi -->
+    <section class="content-main">
+      <h2>Ringkasan Materi</h2>
+      <p>
+        AKHIN.GO mengajak siswa menguatkan pondasi akhlak sejak dini melalui pembiasaan adab di rumah, 
+        sekolah, dan lingkungan sekitar. Setiap bab dilengkapi modul, video, kuis, dan area refleksi 
+        yang dapat dikembangkan oleh tim pengajar.
+      </p>
 
-            // Update status 'active' pada menu sidebar
-            const links = document.querySelectorAll('.sub-menu li a');
-            links.forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
+      <!-- Bab 1 -->
+      <article id="bab1" class="section-module">
+        <h3>Bab 1: Adab di rumah</h3>
 
-            // Scroll ke atas otomatis saat ganti materi
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-    </script>
+        <p>
+          Membangun pondasi karakter akhlak mulia sejak dini melalui pembiasaan bakti kepada orang tua dan 
+          harmoni dalam keluarga.
+        </p>
+
+        <!-- PPT Adab terhadap orang tua -->
+        <section id="1.1">
+          <h4>1.1 Power Point “Adab terhadap orang tua”</h4>
+          <div class="canva-embed">
+            <iframe loading="lazy"
+              src="https://www.canva.com/design/DAHIfZvJW3k/zgTzwATI7xJdB_WDvmghEA/view?embed"
+              allowfullscreen="allowfullscreen"
+              allow="fullscreen">
+            </iframe>
+          </div>
+          <a href="https://www.canva.com/design/DAHIfZvJW3k/zgTzwATI7xJdB_WDvmghEA/view?utm_content=DAHIfZvJW3k&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+             class="quiz-link" target="_blank" rel="noopener">
+            Adab dalam Islam: Harmonis Keluarga Berakhlak Mulia — oleh Khotimah Ummu Ishaq
+          </a>
+        </section>
+
+        <!-- PPT Adab terhadap saudara -->
+        <section id="1.2">
+          <h4>1.2 Power Point “Adab terhadap saudara”</h4>
+          <div class="canva-embed">
+            <iframe loading="lazy"
+              src="https://www.canva.com/design/DAHI2jqQf-8/JZf2a5Mp6IxlVek58EhQlg/view?embed"
+              allowfullscreen="allowfullscreen"
+              allow="fullscreen">
+            </iframe>
+          </div>
+          <a href="https://www.canva.com/design/DAHI2jqQf-8/JZf2a5Mp6IxlVek58EhQlg/view?utm_content=DAHI2jqQf-8&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+             class="quiz-link" target="_blank" rel="noopener">
+            Yellow Colorful Bright The Importance of Education Presentation — oleh violenita viola
+          </a>
+        </section>
+
+        <!-- Quiz BAB 1 -->
+        <section id="1.3">
+          <h4>1.3 Quiz</h4>
+          <a href="https://wayground.com/admin/quiz/69f4094d5b383768820f966e"
+             class="quiz-link" target="_blank" rel="noopener">
+            Kuis Interaktif Pembelajaran Akhlak (BAB 1)
+          </a>
+        </section>
+
+        <!-- Game BAB 1 -->
+        <section id="1.4">
+          <h4>1.4 Game</h4>
+          <a href="https://gemini.google.com/share/7deca3347a2e"
+             class="game-link" target="_blank" rel="noopener">
+            Game interaktif adab di rumah (1)
+          </a>
+        </section>
+
+        <!-- Video BAB 1 -->
+        <section id="1.5">
+          <h4>1.5 Video</h4>
+          <a href="https://youtube.com/shorts/BQmIxT_9FmM?feature=share"
+             class="video-link" target="_blank" rel="noopener">
+            Video pendek pendidikan akhlak (1)
+          </a>
+          <a href="https://youtu.be/fymYOpdV0AM?si=fM9JMhOIgsPM81yw"
+             class="video-link" target="_blank" rel="noopener">
+            Video pendidikan akhlak di rumah (2)
+          </a>
+        </section>
+      </article>
+
+      <!-- Bab 2 -->
+      <article id="bab2" class="section-module">
+        <h3>Bab 2: Adab di Sekolah</h3>
+
+        <p>
+          Fokus pada pengembangan kecerdasan sosial, empati terhadap teman sebaya, serta tata krama dan 
+          rasa hormat kepada pendidik.
+        </p>
+
+        <!-- PPT Adab di sekolah -->
+        <section id="2.1">
+          <h4>2.1 PPT Adab di sekolah</h4>
+          <div class="canva-embed">
+            <iframe loading="lazy"
+              src="https://www.canva.com/design/DAHJ7VLgLrg/2nEqat3VIXzd7v6rvGcKKg/view?embed"
+              allowfullscreen="allowfullscreen"
+              allow="fullscreen">
+            </iframe>
+          </div>
+          <a href="https://www.canva.com/design/DAHJ7VLgLrg/2nEqat3VIXzd7v6rvGcKKg/view?utm_content=DAHJ7VLgLrg&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+             class="quiz-link" target="_blank" rel="noopener">
+            Menghormati Guru dan Menyayangi Teman.pptx — oleh Aisyah Nur (Isnath)
+          </a>
+        </section>
+
+        <!-- Game adab di sekolah -->
+        <section id="2.2">
+          <h4>2.2 Game adab di sekolah</h4>
+          <a href="https://gemini.google.com/share/3e02628a8c04"
+             class="game-link" target="_blank" rel="noopener">
+            Game adab di sekolah (1)
+          </a>
+          <a href="https://gemini.google.com/share/085f39db065a"
+             class="game-link" target="_blank" rel="noopener">
+            Game adab di sekolah (2)
+          </a>
+        </section>
+
+        <!-- Quiz BAB 2 -->
+        <section id="2.3">
+          <h4>2.3 Quiz</h4>
+          <a href="https://gameinteraktif26.my.canva.site"
+             class="quiz-link" target="_blank" rel="noopener">
+            Quiz interaktif Adab di Sekolah
+          </a>
+        </section>
+
+        <!-- Video BAB 2 -->
+        <section id="2.4">
+          <h4>2.4 Video</h4>
+          <a href="https://youtu.be/QevJlyk5GfE?si=xiovUN04vQ750OVP"
+             class="video-link" target="_blank" rel="noopener">
+            Video adab di sekolah (1)
+          </a>
+          <a href="https://youtu.be/re7uZisvFwo?si=xa3No4oAlLNjt3pV"
+             class="video-link" target="_blank" rel="noopener">
+            Video adab di sekolah (2)
+          </a>
+          <a href="https://youtu.be/k8KHpfxOUfM?feature=shared"
+             class="video-link" target="_blank" rel="noopener">
+            Video adab di sekolah (3)
+          </a>
+        </section>
+      </article>
+
+      <!-- Bab 3 -->
+      <article id="bab3" class="section-module">
+        <h3>Bab 3: Adab Lingkungan</h3>
+
+        <p>
+          Menanamkan rasa tanggung jawab, kepedulian terhadap kebersihan, dan kasih sayang terhadap sesama 
+          makhluk ciptaan Allah.
+        </p>
+
+        <!-- PPT adab lingkungan -->
+        <section id="3.1">
+          <h4>3.1 PPT adab lingkungan</h4>
+          <div class="canva-embed">
+            <iframe loading="lazy"
+              src="https://www.canva.com/design/DAHJRR-Cfm8/fi-u2YFHwjBd-jeh5wrsJQ/view?embed"
+              allowfullscreen="allowfullscreen"
+              allow="fullscreen">
+            </iframe>
+          </div>
+          <a href="https://www.canva.com/design/DAHJRR-Cfm8/fi-u2YFHwjBd-jeh5wrsJQ/view?utm_content=DAHJRR-Cfm8&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+             class="quiz-link" target="_blank" rel="noopener">
+            Adab Lingkungan — oleh violenita viola
+          </a>
+        </section>
+
+        <!-- PPT adab kepada hewan -->
+        <section id="3.2">
+          <h4>3.2 PPT adab kepada hewan</h4>
+          <div class="canva-embed">
+            <iframe loading="lazy"
+              src="https://www.canva.com/design/DAHJRuus-jU/Qf3BsYfCnUgI5PHE5_k8NQ/view?embed"
+              allowfullscreen="allowfullscreen"
+              allow="fullscreen">
+            </iframe>
+          </div>
+          <a href="https://www.canva.com/design/DAHJRuus-jU/Qf3BsYfCnUgI5PHE5_k8NQ/view?utm_content=DAHJRuus-jU&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
+             class="quiz-link" target="_blank" rel="noopener">
+            Adab lingkungan — oleh violenita viola
+          </a>
+        </section>
+
+        <!-- Game BAB 3 -->
+        <section id="3.3">
+          <h4>3.3 Game</h4>
+          <a href="https://gemini.google.com/share/72318535a78e"
+             class="game-link" target="_blank" rel="noopener">
+            Game adab lingkungan (1)
+          </a>
+          <a href="https://gemini.google.com/share/db87b509de60"
+             class="game-link" target="_blank" rel="noopener">
+            Game adab lingkungan (2)
+          </a>
+        </section>
+
+        <!-- Video BAB 3 -->
+        <section id="3.4">
+          <h4>3.4 Video</h4>
+          <a href="https://youtube.com/shorts/7Yx3zQOAn_c?feature=share"
+             class="video-link" target="_blank" rel="noopener">
+            Video adab lingkungan (1)
+          </a>
+          <a href="https://youtu.be/8BEzuDzyT3o"
+             class="video-link" target="_blank" rel="noopener">
+            Video adab lingkungan (2)
+          </a>
+        </section>
+
+        <!-- Quiz BAB 3 -->
+        <section id="3.5">
+          <h4>3.5 Quiz</h4>
+          <a href="https://gemini.google.com/share/696cebc6298e"
+             class="quiz-link" target="_blank" rel="noopener">
+            Kuis interaktif adab lingkungan
+          </a>
+        </section>
+
+        <!-- Evaluasi BAB 3 -->
+        <section id="3.6">
+          <h4>3.6 Evaluasi</h4>
+          <a href="https://canva.link/nqpv9yc4ya5t70m"
+             class="quiz-link" target="_blank" rel="noopener">
+            Evaluasi akhir Adab Lingkungan
+          </a>
+        </section>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer halaman belajar -->
+  <footer class="footer">
+    <div class="container">
+      <p>AKHIN GO – Pembelajaran Akhlak Berbasis Teknologi untuk Generasi yang Lebih Baik</p>
+    </div>
+  </footer>
 </body>
 </html>
