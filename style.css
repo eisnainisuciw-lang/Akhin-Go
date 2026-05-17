@@ -1,249 +1,480 @@
-/* VARIABEL WARNA - Silakan ganti kode warna di sini 
-   agar seluruh website berubah warnanya secara otomatis.
+/* 
+=========================================
+VARIABEL WARNA
+Silakan ganti warna sesuai keinginan mahasiswa:
+- primary      : biru navy
+- secondary    : tosca
+- accent       : steel blue
+- bg-main      : denim
+- bg-card      : abu muda
+- text-main    : putih
+- text-secondary: light blue
+=========================================
 */
 :root {
-    --primary-color: #001f3f;      /* Biru Navy */
-    --secondary-color: #40e0d0;    /* Tosca */
-    --accent-color: #4682b4;       /* Steel Blue */
-    --bg-denim: #152238;           /* Denim Background */
-    --bg-light: #f4f4f4;           /* Abu Muda */
-    --text-white: #ffffff;         /* Putih */
-    --text-light-blue: #add8e6;    /* Light Blue */
-    --text-dark: #333333;
+  /* Warna utama */
+  --primary-color: #001f3f;           /* biru navy */
+  --secondary-color: #00bfa5;         /* tosca */
+  --accent-color: #4682b4;            /* steel blue */
+
+  /* Background */
+  --bg-main: #1f5ca9;                 /* denim */
+  --bg-card: #f0f8ff;                 /* abu muda / biru sangat muda */
+
+  /* Teks */
+  --text-main: #ffffff;               /* putih */
+  --text-secondary: #b0e0e6;          /* light blue */
+
+  /* Border dan aksentuan */
+  --border-radius: 12px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
 }
 
-/* RESET DASAR */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* 
+=========================================
+REKOMENDASI PENGGANTIAN:
+Ganti nilai warna di bawah ini untuk mengubah tema:
+Prediksi: jika ingin warna lain, ganti hex di atas dan tidak perlu mengubah CSS lain.
+=========================================
+*/
+
+/* Reset dasar & tata letak */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--text-dark);
-    scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", 
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", 
+    "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-main);
 }
 
 .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-/* NAVBAR */
-.navbar {
-    background-color: var(--primary-color);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    color: var(--text-white);
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li a {
-    color: var(--text-white);
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-}
-
-.nav-links li a:hover {
-    color: var(--secondary-color);
-}
-
-/* HERO SECTION */
-.hero-section {
-    background-color: var(--bg-denim);
-    color: var(--text-white);
-    padding: 80px 0;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-}
-
-.hero-text h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.tagline {
-    font-size: 1.2rem;
-    color: var(--secondary-color);
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.description {
-    margin-bottom: 30px;
-    color: var(--text-light-blue);
-}
-
-/* BUTTONS */
+/* Utility kelas */
 .btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: transform 0.3s, background 0.3s;
+  display: inline-block;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    background-color: var(--text-white);
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--text-main);
 }
 
-.btn-large {
-    padding: 15px 40px;
-    font-size: 1.2rem;
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
-/* SECTION UMUM */
-.section {
-    padding: 80px 0;
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--primary-color);
 }
 
-.bg-light {
-    background-color: var(--bg-light);
+.btn-outline:hover {
+  background-color: var(--primary-color);
+  color: var(--text-main);
 }
 
 .section-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
 }
 
 .section-subtitle {
-    text-align: center;
-    margin-bottom: 50px;
-    color: #666;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
 }
 
-.text-center {
-    text-align: center;
+/* 
+=========================================
+NAVBAR
+=========================================
+*/
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-main);
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* GRID & CARDS */
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
 }
 
-.grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 20px;
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-decoration: none;
 }
 
-.card, .feature-card {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: 0.3s;
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
 }
 
-.card:hover, .feature-card:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+.nav-menu a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
 }
 
-.img-responsive {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--secondary-color);
 }
 
-/* TEAM CARDS */
-.team-card {
-    text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.team-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-    border: 5px solid var(--bg-light);
-}
-
-/* FOOTER */
-.footer {
-    background: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 40px 0;
-}
-
-/* MOBILE RESPONSIVE */
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    background: none;
-    border: none;
+/* Mobile: hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
 }
 
 .bar {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 4px 0;
+  width: 28px;
+  height: 3px;
+  background-color: var(--text-main);
+  margin: 3px 0;
+  border-radius: 10px;
+  transition: var(--transition);
 }
 
-@media (max-width: 768px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    .nav-links {
-        display: none; /* Disembunyikan saat mobile jika belum klik hamburger */
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background: var(--primary-color);
-        padding: 20px;
-    }
-    .nav-links.active {
-        display: flex;
-    }
-    .nav-links li {
-        margin: 10px 0;
-    }
-    .menu-toggle {
-        display: flex;
-    }
+/* 
+=========================================
+HERO SECTION
+=========================================
+*/
+.hero {
+  padding: 4rem 0;
+  background-color: var(--bg-main);
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-tagline {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.hero-desc {
+  margin-bottom: 1.5rem;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* 
+=========================================
+MASALAH SECTION
+=========================================
+*/
+.problem {
+  padding: 4rem 0;
+  background-color: var(--bg-main);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-problem {
+  border-top: 4px solid var(--primary-color);
+}
+
+/* 
+=========================================
+SOLUSI SECTION
+=========================================
+*/
+.solution {
+  padding: 4rem 0;
+  background-color: var(--bg-main);
+}
+
+.solution-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.solution-text {
+  flex: 1;
+}
+
+.benefits-list {
+  margin-top: 1rem;
+  list-style: circle inside;
+  color: var(--text-secondary);
+}
+
+.solution-image {
+  flex: 1;
+  text-align: center;
+}
+
+.solution-img {
+  max-width: 100%;
+  height: 300px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  object-fit: cover;
+}
+
+/* 
+=========================================
+FITUR SECTION
+=========================================
+*/
+.feature {
+  padding: 4rem 0;
+  background-color: var(--bg-main);
+}
+
+.feature-grid {
+  margin-top: 1.5rem;
+}
+
+/* 
+=========================================
+AKSES / CTA SECTION
+=========================================
+*/
+.cta {
+  padding: 4rem 0;
+  background-color: var(--bg-main);
+  text-align: center;
+}
+
+.cta-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-cta {
+  min-width: 200px;
+  font-size: 1.1rem;
+}
+
+/* 
+=========================================
+TIM SECTION
+=========================================
+*/
+.team {
+  padding: 4rem 0;
+  background-color: var(--bg-main);
+}
+
+.profile-grid {
+  margin-top: 1.5rem;
+}
+
+.card-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-image img.img-fallback {
+  background-color: #ccc;
+  font-size: 0.8rem;
+}
+
+.profile-image img.img-fallback::after {
+  content: "Gambar belum ditambahkan";
+  display: block;
+  color: #666;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-profile h3 {
+  margin-bottom: 0.3rem;
+}
+
+.role {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* 
+=========================================
+FOOTER
+=========================================
+*/
+.footer {
+  padding: 2rem 0;
+  background-color: var(--primary-color);
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-details {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.footer-note {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* 
+=========================================
+MEDIA QUERY (MOBILE & TABLET)
+=========================================
+*/
+/* Tablet dan mobile nav */
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background-color: var(--bg-main);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: 1rem 1.5rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image {
+    margin-top: 1.5rem;
+  }
+
+  .solution-content {
+    flex-direction: column;
+  }
+}
+
+/* Mobile sangat kecil */
+@media screen and (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
 }
