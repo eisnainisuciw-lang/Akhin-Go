@@ -1,44 +1,65 @@
-// Navigasi Mobile (Hamburger Menu)
-const mobileMenu = document.getElementById('mobile-menu');
-const navLinks = document.querySelector('.nav-links');
+// script.js – JavaScript murni tanpa library
 
-mobileMenu.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-// Tutup menu saat link diklik (untuk mobile)
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+// Fungsi: smooth scroll ke section
+function smoothScroll(target) {
+  const element = document.querySelector(target);
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth"
     });
+  }
+}
+
+// Event: klik pada link navbar yang mengarah ke id section
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    const href = this.getAttribute("href");
+    if (href !== "#") {
+      e.preventDefault();
+      smoothScroll(href);
+    }
+  });
 });
 
-// Animasi Sederhana saat Scroll (Fade In)
+// Hamburger menu (mobile)
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("active");
+});
+
+// Animasi sederhana saat muncul section (scroll)
 const observerOptions = {
-    threshold: 0.1
+  threshold: 0.1,
+  rootMargin: "0px 0px -50px 0px"
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("section-visible");
+      observer.unobserve(entry.target);
+    }
+  });
 }, observerOptions);
 
-// Menerapkan efek pada section
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'all 0.6s ease-out';
-    observer.observe(section);
+// Ambil semua section utama landing page dan amati
+document.querySelectorAll(".section").forEach(section => {
+  // Awalnya tidak visible
+  section.style.opacity = 0;
+  section.style.transform = "translateY(20px)";
+  section.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+
+  observer.observe(section);
 });
 
-// Penanganan Gambar Gagal Dimuat
-document.querySelectorAll('img').forEach(img => {
-    img.onerror = function() {
-        this.src = 'https://via.placeholder.com/400x300?text=Gambar+Belum+Ada';
-        this.style.background = '#ccc';
-    };
+// Tambah kelas CSS jika ingin efek berbeda:
+// di CSS, bisa tambahkan: .section-visible { opacity: 1; transform: translateY(0); }
+
+// Penanganan gambar gagal dimuat (fallback visual sederhana)
+document.querySelectorAll("img").forEach(img => {
+  img.addEventListener("error", () => {
+    img.style.backgroundColor = "#ccc";
+  });
 });
